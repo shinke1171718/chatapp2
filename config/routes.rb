@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  devise_scope :user do
+    root to: 'users/registrations#new'
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   devise_for :users
+  resources :users, :only => [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

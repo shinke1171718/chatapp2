@@ -1,0 +1,17 @@
+<h1>ホーム</h1>
+
+<div class= "logout_button">
+  <li><%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
+</div>
+
+<h2>ユーザー一覧</h2>
+<div class = "user_list">
+  <% if @users.nil? %>
+    'anonymous'
+  <% else %>
+    <% @users.each do |user| %>
+      <%= link_to user.name %>
+    <% end %>
+  <% end %>
+</div>
+
