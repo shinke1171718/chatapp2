@@ -10,7 +10,9 @@
     'anonymous'
   <% else %>
     <% @other.each do |ur| %>
-      <%= link_to user.name%>
+      <%= link_to rooms_create_path(@other) do %>
+        <%= @other.name %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

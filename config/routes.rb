@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/show'
+  post 'users/show' => 'rooms/create'
+  get 'rooms/create' => 'rooms(.:format)/show'
   devise_scope :user do
     root to: 'users/registrations#new'
     get '/users/sign_out' => 'devise/sessions#destroy'
