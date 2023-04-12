@@ -6,12 +6,12 @@
 
 <h2>ユーザー一覧</h2>
 <div class = "user_list">
-  <% if @other.nil? %>
+  <% if @users.nil? %>
     'anonymous'
   <% else %>
-    <% @other.each do |ur| %>
-      <%= link_to rooms_create_path(@other) do %>
-        <%= @other.name %>
+    <% @users.each do |user| %>
+      <%= link_to rooms_create_path(@users) do %>
+        <%= user.name %>
       <% end %>
     <% end %>
   <% end %>

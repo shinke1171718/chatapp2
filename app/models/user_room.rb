@@ -2,7 +2,7 @@ class UserRoom < ApplicationRecord
   belongs_to :user
   belongs_to :room
 end
-class User_room < ApplicationRecord
+class UserRoom < ApplicationRecord
   belongs_to :user
   belongs_to :room
 end
