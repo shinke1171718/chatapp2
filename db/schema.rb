@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_15_101853) do
+ActiveRecord::Schema.define(version: 2023_04_16_032434) do
+
+  create_table "conversation_rooms", force: :cascade do |t|
+    t.integer "userroom_id", null: false
+    t.integer "usermessage_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["usermessage_id"], name: "index_conversation_rooms_on_usermessage_id"
+    t.index ["userroom_id"], name: "index_conversation_rooms_on_userroom_id"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text "message"
@@ -27,6 +36,15 @@ ActiveRecord::Schema.define(version: 2023_03_15_101853) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "user_messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "message_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message_id"], name: "index_user_messages_on_message_id"
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -53,9 +71,13 @@ ActiveRecord::Schema.define(version: 2023_03_15_101853) do
     t.index ["user_room_id"], name: "index_users_on_user_room_id"
   end
 
+  add_foreign_key "conversation_rooms", "usermessages"
+  add_foreign_key "conversation_rooms", "userrooms"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "user_messages", "messages"
+  add_foreign_key "user_messages", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

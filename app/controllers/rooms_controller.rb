@@ -9,7 +9,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     if UserRoom.where(user_id: current_user.id,room_id: @room.id).present?
-      @messages = @room.messages
+      @messages = @room.message
       @message = Message.new
       @user_rooms = @room.user_room
     else
@@ -21,5 +21,5 @@ end
 private
 
 def user_room_params
-  params.permit(:user_id, :room_id)
+  params.require(:userroom).permit(:user_id, :room_id)
 end

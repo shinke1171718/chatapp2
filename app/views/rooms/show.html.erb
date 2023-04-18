@@ -1,4 +1,27 @@
-<h1>Rooms#show</h1>
+<h1>トーク画面</h1>
 <div>
-  <%= link_to "ユーザー一覧に戻る", users_show_path(id: current_user.id) %> 
+  <%= link_to "ユーザー一覧に戻る", users_show_path(current_user) %>
 </div>
+
+<%= @users %>
+
+<div class="chats">
+  <div class="chat">
+    <% if @messages.present? %>
+      <% @messages.each do |m| %>
+        <%= m.message %>
+      <% end %>
+    <% else %>
+      "トークを始めましょう！"
+    <% end %>
+  </div>
+</div>
+
+<div class="posts">
+  <%= form_for @message do |f| %>
+    <%= f.text_field :message%>
+      <%= f.hidden_field :room_id, value: @room.id %>
+        <%= f.submit "投稿",class: 'form-submit'%>
+  <% end %>
+</div>
+

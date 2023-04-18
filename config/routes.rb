@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get 'messages/create'
   post 'users/show' => 'rooms/create'
+  post 'rooms/create' => 'rooms/show'
   get 'rooms/create' => 'rooms(.:format)/show'
   devise_scope :user do
     root to: 'users/registrations#new'
