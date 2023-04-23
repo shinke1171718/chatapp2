@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'messages/create'
+  post 'rooms/show' => 'messages/create'
+  get 'messages/create' => 'rooms/show'
   post 'users/show' => 'rooms/create'
   post 'rooms/create' => 'rooms/show'
   get 'rooms/create' => 'rooms(.:format)/show'
