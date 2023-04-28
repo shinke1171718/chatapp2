@@ -8,12 +8,11 @@ class ApplicationController < ActionController::Base
     end
 
     def after_sign_in_path_for(resource)
-      flash[:notice] = "ログインに成功しました"
-      users_show_path(resource)
+      flash[:alret] = "ログインに成功しました"
+      user_path(1)
     end
   
     def after_sign_out_path_for(resource)
-      flash[:alert] = "ログアウトしました"
       new_user_session_path
     end
 end

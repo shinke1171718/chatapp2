@@ -1,26 +1,34 @@
+<p><%= flash[:now] %></p>
+
 <h1>トーク画面</h1>
+
 <div>
-  <%= link_to "ユーザー一覧に戻る", users_show_path(current_user) %>
+  <%= link_to "ユーザー詳細に戻る", user_path(@user) %>
 </div>
 
-<%= @users %>
+<h1><%= @room.name %></h1>
+<p>This room belongs to <%= @user.name %>.</p>
+
+<p><%= flash[:alret] %></p>
 
 <div class="chats">
   <div class="chat">
     <% if @messages.present? %>
       <% @messages.each do |m| %>
-        <%= m.message %>
+        <%= m.content %>
       <% end %>
-    <% else %>
+    <% else @messages.nil? %>
       "トークを始めましょう！"
     <% end %>
   </div>
 </div>
 
+
 <div class="posts">
-  <%= form_for @message do |f| %>
-    <%= f.text_field :message%>
+  <%= form_for [@room, @message], method: :post do |f| %>
+    <%= f.text_field :content%>
       <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.hidden_field :user_id, value: @user.id %>
         <%= f.submit "投稿",class: 'form-submit'%>
   <% end %>
 </div>

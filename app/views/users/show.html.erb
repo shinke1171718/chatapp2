@@ -1,4 +1,4 @@
-<h1>ホーム</h1>
+<h1><%= @user.name %>さんのホーム</h1>
 
 <div class= "logout_button">
   <li><%= link_to 'LOGOUT', destroy_user_session_path, method: :delete %></li>
@@ -10,9 +10,7 @@
     'anonymous'
   <% else %>
     <% @users.each do |user| %>
-      <%= link_to rooms_create_path(@room, id: user.id) do %>
-        <%= user.name %>
-      <% end %>
+      <%= link_to user.name ,rooms_create_path(current_user_id: current_user.id, user_id: user.id), method: :post %>
     <% end %>
   <% end %>
 </div>
