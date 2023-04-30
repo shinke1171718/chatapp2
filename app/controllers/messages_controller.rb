@@ -3,10 +3,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     if @message.save
       flash[:alret] = "投稿に成功しました。"
-      redirect_to "/rooms/#{@message.id}"
+      redirect_to "/rooms/#{@message.room_id}"
     else
       flash[:alret] = "投稿に失敗しました。"
-      redirect_to "/rooms/#{@message.id}"
+      redirect_to "/rooms/#{@message.room_id}"
     end
   end
 

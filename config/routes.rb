@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get '/user/:id', to: 'user#show'
-  get '/rooms/:id', to: 'rooms#show'
-  post '/rooms/:id', to: 'messages#create'
+  get '/rooms/:id', to: 'rooms#show', as: 'rooms_show'
+  post '/rooms/:id', to: 'messages#create', as: 'message_create'
   post '/user/:id/rooms/', to: 'rooms#create', as: 'rooms_create'
 
   devise_scope :user do
