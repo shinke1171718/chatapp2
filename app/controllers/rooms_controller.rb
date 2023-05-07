@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
       flash[:now] = "新しくROOMを作成しました。"
       redirect_to "/rooms/#{@room.id}"
     else
-      redirect_to "/rooms/#{@room.id}"
+      redirect_to "/rooms/#{@room.id}" 
     end
   end
 
